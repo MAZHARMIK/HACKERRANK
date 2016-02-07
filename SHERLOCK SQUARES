@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int t,i,j=0,s,e,z,c=0;
+    scanf("%d\n",&t);
+    for(i=1;i<=t;i++)
+    {
+        scanf("%d\n%d",&s,&e);
+        for(z=s;z<=e;z++)
+                {
+                    while(j*j<=e)
+                    {
+                      if((j*j)==z)
+                      {
+                        c=c+1;
+                        j++ ;
+                        break;
+                      }
+
+                      j++;
+                    }
+                    j=1;
+                }
+                printf("%d\n",c);
+                c=0;
+    }
+}
