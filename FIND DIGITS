@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int t,n,i,j,b,c=0;
+scanf("%d\n",&t);
+for(i=1;i<=t;i++)
+{
+    scanf("%d\n",&n);
+    b=n;
+    while(b!=0)
+    {
+        j=b%10;
+        if(j==0)
+            b=b/10;
+        else if(n%j==0)
+        {
+            c+=1;
+            b/=10;
+        }
+        else
+            b/=10;
+    }
+    c=0;
+}
+return 0;
+}
