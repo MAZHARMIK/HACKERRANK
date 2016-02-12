@@ -1,0 +1,43 @@
+#include <stdio.h>
+int call(int,int);
+
+int main(){
+    int t,a0;
+    scanf("%d",&t);
+    for( a0 = 0; a0 < t; a0++){
+        int a,n,c,m,z,b;
+        scanf("%d %d %d",&n,&c,&m);
+        a=n/c;
+        b=a;
+        z=call(b,m);
+        printf("%d\n",a+z);
+    }
+    return 0;
+}
+int call(int b,int m)
+{
+    int i,count=0,wrapper=0,z,remainingwrapper;
+    for(i=1;i<=b;i++)
+    {
+        if(i%m==0)
+        {
+            count++;
+            wrapper++;
+        }
+    }
+    z=b-(count*m);
+    if(z==0)
+    {
+        return(wrapper);
+    }
+    else
+    {
+        remainingwrapper=z+wrapper;
+        for(i=1;i<=remainingwrapper;i++)
+        {
+            if(i%m==0)
+                wrapper++;
+        }
+        return(wrapper);
+    }
+}
