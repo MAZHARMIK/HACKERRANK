@@ -1,0 +1,25 @@
+#include<stdio.h>
+int main()
+{
+    int T,a,b,n,i,j,k,last;
+    scanf("%d",&T);
+    for(i=0;i<T;i++)
+    {
+        scanf("%d %d %d",&n,&a,&b);
+        for(j=0,k=n-1;j<n,k>=0;j++,k--)
+        {
+            if(a==b)
+            {
+                printf("%d\n",a*(n-1));
+                break;
+            }
+            else if(a<b)
+                printf("%d\t",(a*k)+(b*j));
+            else
+                printf("%d\t",(a*j)+(b*k));
+        }
+        if(a!=b)
+         printf("\n");
+    }
+    return 0;
+}
