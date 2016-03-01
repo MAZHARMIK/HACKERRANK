@@ -1,0 +1,38 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+int main(){
+    int t,i;
+    scanf("%d",&t);
+    for(i= 0; i < t; i++){
+        unsigned long long int b;
+        unsigned long long int w;
+        scanf("%llu %llu",&b,&w);
+        unsigned long long int x;
+        unsigned long long int y;
+        unsigned long long int z;
+        scanf("%llu %llu %llu",&x,&y,&z);
+        if(x==y)
+            printf("%llu\n",(b*x)+(w*y));
+        else if(x<y)
+        {
+            if((w*y)>((x+z)*w))
+                printf("%llu\n",(b*x)+((x+z)*w));
+            else
+                printf("%llu\n",(b*x)+(w*y));
+        }
+        else
+        {
+            if((b*x)>((y+z)*b))
+                printf("%llu\n",(w*y)+((y+z)*b));
+            else
+                printf("%llu\n",(b*x)+(w*y));
+        }
+    }
+    return 0;
+}
