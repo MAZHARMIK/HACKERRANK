@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<math.h>
+unsigned long long int count(unsigned long long int);
+
+int main()
+{
+    unsigned long long int p,q,i,t,k,h,x,y,counts=0;
+    scanf("%lld %lld",&p,&q);
+   for(i=p;i<=q;i++)
+   {
+        k=i*i;
+        t=count(i);
+        h=round(pow(10,t));
+        x=k%h;
+        y=k/h;
+        if((x+y)==i)
+        {
+        printf("%lld\t",i);
+        counts++;
+        }
+}
+    if(counts==0)
+        printf("INVALID RANGE\n");
+    return 0;
+}
+unsigned long long int count(unsigned long long int k)
+{
+    unsigned long long int total=0;
+    while(k!=0)
+    {
+        k=k/10;
+        total+=1;
+    }
+    return total;
+}
