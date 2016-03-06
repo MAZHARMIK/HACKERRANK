@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main()
+{
+    char a[1000];
+    int Array[1000],i,B[91]={0},C[123]={0},j,flag=0;
+    gets(a);
+    for(i=0;a[i]!='\0';i++)
+    {
+        Array[i]=a[i];
+    }
+    for(i=0;i<strlen(a);i++)
+    {
+        if(Array[i]>=65 && Array[i]<=90)
+        {
+            B[Array[i]]++;
+        }
+        else if(Array[i]>=97 && Array[i]<=122)
+        {
+            C[Array[i]]++;
+        }
+    }
+   for(i=65,j=97;i<=90,j<=122;i++,j++)
+   {
+       if(B[i]+C[j]>0)
+        continue;
+       else
+        flag++;
+   }
+   if(flag!=0)
+    printf("NO\n");
+   else
+    printf("YES\n");
+
+    return 0;
+}
