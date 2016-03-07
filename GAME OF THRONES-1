@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int main()
+{
+    char a[100000];
+    int arr[123]={0},i,flag=1,count=0;
+    scanf("%s",a);
+    for(i=0;a[i]!='\0';i++)
+    {
+        arr[a[i]]++ ;
+    }
+    for(i=97;i<=122;i++)
+    {
+        if(arr[i]%2!=0)
+        {
+            count++;
+            if(count>1)
+            {
+                flag=0;
+                break;
+            }
+        }
+    }
+    if(flag==0)
+        printf("NO\n");
+    else
+        printf("YES\n");
+
+}
