@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main()
+{
+    int h,t;
+    scanf("%d",&t);
+    char a[100000];
+    for(h=0;h<t;h++)
+    {
+    int i,d,e,count=0;
+    scanf("%s",a);
+    for(i=1;a[i]!='\0';i++)
+    {
+        d=a[i];
+        e=a[i-1];
+        if(d==e)
+            count++;
+    }
+    printf("%d\n",count);
+    }
+    return 0;
+}
