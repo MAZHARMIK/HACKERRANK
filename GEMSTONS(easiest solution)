@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    char a[100];
+    int i,b[123]={0},count=0,total=0,N,j;
+    scanf("%d",&N);
+    for(i=0;i<N;i++)
+   {
+       scanf("%s",a);
+       for(j=0;a[j]!='\0';j++)
+       {
+           if(b[a[j]]==i)
+           b[a[j]]++;
+       }
+   }
+   for(i=97;i<=122;i++)
+   {
+         if(b[i]==N)
+            total++;
+
+   }
+   printf("%d\n",total);
+   return 0;
+}
