@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    char a[10000];
+    char b[10000];
+    int ca[123]={0},cb[123]={0},count=0,i;
+    scanf("%s",a);
+    scanf("%s",b);
+    for(i=0;a[i]!='\0';i++)
+    {
+        ca[a[i]]++;
+    }
+    for(i=0;b[i]!='\0';i++)
+    {
+        cb[b[i]]++;
+    }
+    for(i=97;i<=122;i++)
+    {
+        if(ca [i]!=cb [i])
+        count+=abs (ca [i]-cb [i]);
+    }
+    printf("%d\n",count);
+    return 0;
+}
