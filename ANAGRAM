@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+
+int main()
+{
+    int t,h;
+    scanf("%d",&t);
+    for(h=0;h<t;h++)
+    {
+
+   char s[100000];
+   int arr1[123]={0},count=0;
+   int arr2[123]={0},i;
+   scanf("%s",s);
+   if(strlen(s)%2!=0)
+   {
+       printf("%d\n",-1);
+   }
+   else
+   {
+       int l;
+       l=strlen(s);
+       for(i=0;i<l/2;i++)
+       {
+           arr1[s[i]]++ ;
+       }
+       for(i=l/2;i<l;i++)
+       {
+           arr2[s[i]]++;
+       }
+       for(i=97;i<123;i++)
+       {
+           if(arr1[i]!=arr2[i])
+            count+=abs(arr1[i]-arr2[i]);
+       }
+       printf("%d\n",count/2);
+   }
+    }
+    return 0;
+}
