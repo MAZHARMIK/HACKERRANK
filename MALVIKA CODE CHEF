@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int t,h;
+    scanf("%d",&t);
+    for(h=0;h<t;h++)
+    {
+    char a[100];
+    int b[123]={0},i;
+    scanf("%s",a);
+    for(i=0;a[i]!='\0';i++)
+    {
+        b[a[i]]++;
+    }
+    if(b[97]>=b[98])
+    {
+        printf("%d\n",b[98]);
+    }
+    else if(b[97]<=b[98])
+    {
+        printf("%d\n",b[97]);
+    }
+    else
+        printf("%d\n",0);
+    }
+    return 0;
+}
