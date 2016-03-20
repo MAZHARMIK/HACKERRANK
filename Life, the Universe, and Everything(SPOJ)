@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int a,i=0,arr[100]={0};
+   do
+   {
+       scanf("%d\n",&a);
+       arr[i]=a;
+       i++;
+   }while(a!=42);
+   for(i=0;;i++)
+   {
+       if(arr[i]==42)
+        break;
+       printf("%d\n",arr[i]);
+   }
+}
