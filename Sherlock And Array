@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int array[100000];
+int main() {
+
+    int T,size,total,i,sumleft,flag;
+    scanf("%d",&T);
+    while(T--)
+        {
+        scanf("%d",&size);
+        sumleft=flag=total=0;
+        for(i=0;i<size;i++)
+            {
+            scanf("%d",&array[i]);
+            total+=array[i];
+        }
+        for(i=0;i<size;i++)
+            {
+            total=total-array[i];
+            if(sumleft==total)
+                {
+                    flag=1;
+                    break;
+                }
+            sumleft=sumleft+array[i];
+        }
+        if(flag==1)
+            printf("YES\n");
+        else
+            printf("NO\n");
+    }
+    return 0;
+}
