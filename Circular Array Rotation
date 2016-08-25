@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n,R,m,i,q,k;
+    scanf("%d %d %d",&n,&R,&q);
+    int Array[n];
+    for(i=0;i<n;i++)
+        scanf("%d",&Array[i]);
+    while(q--)
+    {
+        scanf("%d",&m);
+        for(i=0;i<n;i++)
+        {
+            k=i+R;
+            while(k>n-1)
+                k-=n;
+            if(k==m)
+            {
+                printf("%d\n",Array[i]);
+                break;
+            }
+        }
+    }
+    return 0;
+}
