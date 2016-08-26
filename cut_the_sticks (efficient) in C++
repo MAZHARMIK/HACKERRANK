@@ -1,0 +1,31 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+    int N,l=0;
+    cin>>N;
+    int k=N;
+    int arr[N],ARRAY[N];
+    for(int i=0;i<N;i++)
+        cin>>arr[i];
+    sort(arr,arr+N);
+    ARRAY[l++]=N; 
+    k--;
+    for(int i=0;i<N-1;i++)
+    {
+        if(arr[i]==arr[i+1])
+            k--;
+        else
+        {
+            ARRAY[l++]=k;
+            k--;
+            if(k==0)
+                break;
+        }
+    }
+    for(int i=0;i<l;i++)
+        cout<<ARRAY[i]<<endl;
+    return 0;
+}
