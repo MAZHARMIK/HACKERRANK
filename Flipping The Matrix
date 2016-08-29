@@ -1,0 +1,34 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    int T,times,n,i,j,sum,Size,k;
+    cin>>T;
+    while(T--)
+    {
+        sum=0;
+        cin>>n;
+        int arr[2*n][2*n];
+        for(i=0;i<2*n;i++)
+            for(j=0;j<2*n;j++)
+            {
+                cin>>arr[i][j];
+            }
+        k=(2*n)-1;
+        Size=2*n-1;
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<n;j++)
+            {
+                sum+=(max(max(arr[i][j],arr[i][k]),max(arr[Size][j],arr[Size][k])));
+                k--;
+            }
+            k=(2*n)-1;
+            Size--;
+        }
+        cout<<sum<<endl;
+    }
+    return 0;
+}
