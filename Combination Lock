@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<math.h>
+
+int main()
+{
+    int arr1[5],arr2[5],count=0,i;
+    for(i=0;i<5;i++)
+        scanf("%d",&arr1[i]);
+    for(i=0;i<5;i++)
+        {
+            scanf("%d",&arr2[i]);
+            if(arr2[i]==arr1[i])
+                continue;
+            else if(abs(arr2[i]-arr1[i])>5)
+                count += ((10)-abs(arr2[i]-arr1[i]));
+            else
+                count+=(abs(arr2[i]-arr1[i]));
+        }
+        printf("%d",count);
+        return 0;
+}
