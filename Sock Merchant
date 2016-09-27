@@ -1,0 +1,24 @@
+#include <iostream>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+    int n,i;
+    int ARRAY[100],sum=0;
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+        cin>>ARRAY[i];
+    }
+    sort(ARRAY,ARRAY+n);
+    for(i=0;i<n-1;i++)
+    {
+        if(ARRAY[i]==ARRAY[i+1])
+        {
+            sum+=1;
+            i++;
+        }
+    }
+    cout<<sum;
+}
