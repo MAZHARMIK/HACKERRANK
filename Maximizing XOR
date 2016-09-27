@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int l,r,max,i,j;
+    scanf("%d %d",&l,&r);
+    max=-1;
+    for(i=l;i<=r;i++)
+    {
+        for(j=i;j<=r;j++)
+        {
+           if((i^j)>max)
+                max=(i^j);
+        }
+    }
+   printf("%d",max);
+    return 0;
+}
