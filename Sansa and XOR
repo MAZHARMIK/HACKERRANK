@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+   int T,N,i,Result,Array[100008];
+   scanf("%d",&T);
+   while(T--)
+   {
+       Result=0;
+       scanf("%d",&N);
+       for(i=0;i<N;i++)
+       {
+           scanf("%d",&Array[i]);
+           if(i%2==0)
+            Result^=Array[i];
+       }
+       if(N%2==0)
+        printf("%d\n",0); //For N = Even, it will always be zero.
+       else
+        printf("%d\n",Result); //For N = odd, the answer would be the XOR of alternating elements
+   }
+   return 0;
+}
