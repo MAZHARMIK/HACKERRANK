@@ -24,8 +24,10 @@ int main()
                         i=a+j;
                     }
                     else
+                       {
                         j= j*2;
                         i=a+j;
+                       }
                 }
            printf("%llu\n",And);
         }
