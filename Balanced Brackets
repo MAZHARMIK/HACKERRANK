@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<limits.h>
+#include<string.h>
+
+struct Stack
+{
+    int top;
+    int capacity;
+    char *array;
+};
+
+struct Stack* createStack(int capacity)
+{
+    struct Stack* stack=(struct Stack*)malloc(sizeof(struct Stack));
+    stack->top=-1;
+    stack->capacity=capacity;
+    stack->array = (char*)malloc(stack->capacity * sizeof(char));
+    return stack;
+};
+
+//isFull()
+int isFull(struct Stack* stack)
+{
+    return stack->top==(stack->capacity)-1;
+}
+
+//push()
+void push(struct Stack* stack,char op)
+{
+    if(isFull(stack))
+       return;
+    else
+        stack->array[++stack->top]=op;
+}
+
+//parentheses()
+void parentheses(char *str)
+{
+    struct Stack *stack = createStack(strlen(str));
+    int i;
+    for(i=0;str[i]!='\0';i++)
+    {
+        if(str[i]=='(' || str[i]=='{' || str[i]=='[')
+            push(stack,str[i]);
+        else if(str[i]==')')
+        {
+            if(stack->array[stack->top] == '(')
+                (stack->top)--;
+            else
+                stack->top++;
+        }
+        else if(str[i]=='}')
+        {
+            if(stack->array[stack->top] == '{')
+                (stack->top)--;
+            else
+                stack->top++;
+        }
+        else if(str[i]==']')
+        {
+            if(stack->array[stack->top] == '[')
+                (stack->top)--;
+            else
+                stack->top++;
+        }
+    }
+       if(stack->top==-1)
+            printf("YES\n");
+       else
+        printf("NO\n");
+}
+
+//driver function
+int main()
+{
+    char str[1000];
+    int n;
+    scanf("%d",&n);
+    while(n--)
+    {
+        scanf("%s",str);
+        parentheses(str);
+    }
+    return 0;
+}
