@@ -1,0 +1,35 @@
+#include<iostream>
+#include<algorithm>
+#include<bits/stdc++.h>
+
+using namespace std;
+int main()
+{
+    stack<int> Stack;
+    int n;
+    scanf("%d",&n);
+    int i,choice,data;
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&choice);
+        switch(choice)
+        {
+        case 1:
+            scanf("%d",&data);
+            if(Stack.empty())
+                Stack.push(data);
+            else
+                Stack.push(max(data,Stack.top()));
+            break;
+        case 2:
+            if(!Stack.empty())
+                Stack.pop();
+            break;
+        case 3:
+            if(!Stack.empty())
+                printf("%d\n",Stack.top());
+            break;
+        }
+    }
+    return 0;
+}
