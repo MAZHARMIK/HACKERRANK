@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<limits.h>
+#include<stdlib.h>
+
+int Arr[100005];
+int maxArea=INT_MIN;
+struct Stack
+{
+    int top;
+    int capacity;
+    int *array;
+};
+struct Stack* createStack(int capacity)
+{
+    struct Stack *stack =(struct Stack*)malloc(sizeof(struct Stack));
+    stack->top=-1;
+    stack->capacity=capacity;
+    stack->array=(int *)malloc(sizeof(int)*(capacity));
+    return stack;
+};
+struct Stack* isFull(struct Stack* stack)
+{
+    return stack->top==stack->capacity-1;
+};
+
+void push(struct Stack* stack,int item)
+{
+    stack->array[++stack->top]=item;
+}
+
+
+int isEmpty(struct Stack *stack)
+{
+    return stack->top==-1;
+}
+
+void pop(struct Stack* stack)
+{
+    if(isEmpty(stack))
+        return INT_MIN;
+    else
+        stack->top--;
+}
+
+int peek(struct Stack* stack)
+{
+    return stack->array[stack->top];
+}
+
+int main()
+{
+    struct Stack *StackHeight=createStack(100005);
+    struct Stack *StackPosition=createStack(100005);
+    int n,i,h,pos,tempPos,temph,tempArea;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&Arr[i]);
+    }
+    for(pos=0;pos<n;pos++)
+    {
+        h=Arr[pos];
+        if(h>peek(StackHeight) || isEmpty(StackHeight))
+        {
+            push(StackHeight,h);
+            push(StackPosition,pos);
+        }
+        else if(h<peek(StackHeight))
+        {
+            while(h<peek(StackHeight))
+            {
+                temph=peek(StackHeight);
+                pop(StackHeight);
+                tempPos=peek(StackPosition);
+                pop(StackPosition);
+                tempArea=temph*(pos-tempPos);
+                if(tempArea>maxArea)
+                    maxArea=tempArea;
+            }
+            push(StackHeight,h);
+            push(StackPosition,tempPos);
+        }
+    }
+    while(!isEmpty(StackHeight))
+    {
+         temph=peek(StackHeight);
+         pop(StackHeight);
+         tempPos=peek(StackPosition);
+         pop(StackPosition);
+         tempArea=temph*(pos-tempPos);
+        if(tempArea>maxArea)
+            maxArea=tempArea;
+    }
+    printf("%d\n",maxArea);
+    return 0;
+}
