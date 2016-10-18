@@ -16,7 +16,7 @@ int main()
     {
         if(ARRAY[i]==ARRAY[i+1])
         {
-            sum+=1;
+            sum++;
             i++;
         }
     }
