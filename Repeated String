@@ -1,0 +1,68 @@
+//ACCEPTED SOLUTION
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    unsigned long long n,Count=0,i,length,remainder,extra=0;
+    char name[100];
+    scanf("%s",name);
+    scanf("%llu",&n);
+    for(i=0;name[i]!='\0';i++)
+    {
+        if(name[i]=='a')
+            Count++;
+    }
+    length = strlen(name);
+    remainder= n%length;
+    if(n%length == 0)
+        printf("%llu\n",n/length * Count);
+    else
+    {
+        for(i=0;i<remainder;i++)
+        {
+            if(name[i]=='a')
+                extra++;
+        }
+        printf("%llu\n",(n/length * Count)+extra);
+    }
+    return 0;
+}
+
+
+//UNACCEPTED SOLUTION
+/*
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    unsigned long long n,Count=0;
+    char name[100];
+    scanf("%s",name);
+    scanf("%llu",&n);
+    unsigned long long i=0;
+    if(strlen(name)==1 && name[0]=='a')
+        printf("%llu\n",n);
+    else if(strlen(name)==1 && name[0]!='a')
+        printf("%d\n",0);
+    else
+    {
+        while(n--)
+    {
+        if(name[i]=='a')
+            Count++;
+        else if(name[i]=='\0')
+            {
+                i=-1;
+                n++;
+            }
+        i++;
+    }
+    printf("%llu\n",Count);
+    }
+    return 0;
+}
+*/
