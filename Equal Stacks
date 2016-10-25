@@ -1,0 +1,72 @@
+#include<stdio.h>
+long long int arr1[100005],arr2[100005],arr3[100005];
+long long int stack1[100005],stack2[100005],stack3[100005];
+
+void push(long long int *stack,long long int element,long long int *top)
+{
+    if(*top==-1)
+    {
+        stack[++(*top)]= element;
+    }
+    else
+    {
+        ++(*top);
+        stack[*top] = stack[(*top) - 1] + element;
+    }
+}
+
+int main()
+{
+
+    long long int n1,n2,n3,top1=-1,top2=-1,top3=-1,i,max=0;
+    scanf("%lld %lld %lld",&n1,&n2,&n3);
+    for(i=0;i<n1;i++)
+        scanf("%lld",&arr1[i]);
+    for(i=0;i<n2;i++)
+        scanf("%lld",&arr2[i]);
+    for(i=0;i<n3;i++)
+        scanf("%lld",&arr3[i]);
+
+    for(i=n1-1;i>=0;i--)
+        push(stack1,arr1[i],&top1);
+
+    for(i=n2-1;i>=0;i--)
+        push(stack2,arr2[i],&top2);
+
+    for(i=n3-1;i>=0;i--)
+        push(stack3,arr3[i],&top3);
+
+    while(1)
+    {
+        if(top1==-1 || top2==-1 || top3==-1)
+            break;
+        if(stack1[top1]>stack2[top2] && stack1[top1]>stack3[top3])
+            top1--;
+        else if(stack2[top2]>stack1[top1] && stack2[top2]>stack3[top3])
+            top2--;
+        else if(stack3[top3]>stack1[top1] && stack3[top3]>stack2[top2])
+            top3--;
+        else if(stack1[top1]==stack2[top2] && stack1[top1] != stack3[top3])
+            {
+                top2--;
+                top1--;
+            }
+        else if(stack1[top1]==stack3[top3] && stack1[top1] != stack2[top2])
+            {
+                top3--;
+                top1--;
+            }
+        else if(stack2[top2]==stack3[top3] && stack2[top2] != stack1[top1])
+            {
+                top2--;top3--;
+            }
+        else
+        {
+            max=stack1[top1];
+            break;
+        }
+
+    }
+    printf("%lld",max);
+    return 0;
+}
