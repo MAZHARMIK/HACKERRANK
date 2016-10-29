@@ -1,0 +1,46 @@
+#include <iostream>
+#include<limits>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long T,Mg,My,Mr,Og,Oy,Or,Pg,Py,Pr,Max;
+    long long sum_maple_row,sum_oak_row,sum_poplar_row,sum_maple_col,sum_oak_col,sum_poplar_col;
+    scanf("%lld",&T);
+    while(T--)
+    {
+        scanf("%lld %lld %lld",&Mg,&My,&Mr);
+        scanf("%lld %lld %lld",&Og,&Oy,&Or);
+        scanf("%lld %lld %lld",&Pg,&Py,&Pr);
+        if(Mg==0 && My == 0 && Mr ==0 && Og == 0 && Oy == 0 && Or == 0 && Pg == 0 && Py == 0 && Pr == 0)
+            printf("%d\n",0);
+        else
+        {
+        Max = 0;
+        sum_maple_row = Mg+My+Mr;
+        sum_oak_row = Og+Oy+Or;
+        sum_poplar_row = Pg+Py+Pr;
+        sum_maple_col = Mg+Og+Pg;
+        sum_oak_col = My+Oy+Py;
+        sum_poplar_col = Mr+Or+Pr;
+            if(sum_maple_row>Max)
+                Max = sum_maple_row;
+            if(sum_oak_row>Max)
+                Max = sum_oak_row;
+            if(sum_poplar_row>Max)
+                Max = sum_poplar_row;
+            if(sum_maple_col>Max)
+                Max = sum_maple_col;
+            if(sum_oak_col>Max)
+                Max = sum_oak_col;
+            if(sum_poplar_col>Max)
+                Max = sum_poplar_col;
+        if(Max%2 == 0)
+            printf("%lld\n",Max-1);
+        else
+            printf("%lld\n",Max);
+        }
+    }
+    return 0;
+}
