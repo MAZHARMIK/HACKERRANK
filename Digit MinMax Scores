@@ -1,0 +1,34 @@
+#include <iostream>
+#include<string>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    unsigned long long int a,b,i,j,Min=0,Max=0,new_temp,a1,b1,c1,temp;
+    scanf("%llu %llu",&a,&b);
+    for(j=a;j<=b;j++)
+    {
+        i=j;
+        while(i!=0)
+        {
+            if(i/100 == 0)
+                break;
+            else
+            {temp = i;
+            a1 = temp/10;
+            b1 = temp%10;
+            c1 = a1%10;
+            new_temp = (a1/10)%10;
+            //printf("temp=%llu, a1=%llu, b1=%llu,c1=%llu,new_temp=%llu\n",temp,a1,b1,c1,new_temp);
+            if(c1<new_temp && c1<b1)
+                Min++;
+            else if(c1>new_temp && c1>b1)
+                Max++;
+            }
+             i = i/10;
+        }
+    }
+    printf("%llu\n",Min+Max);
+    return 0;
+}
