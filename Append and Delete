@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main()
+{
+    char s[100],t[100];
+    scanf("%s",s);
+    scanf("%s",t);
+    int k,x=0,y=0,c=0,l1,l2;
+    scanf("%d",&k);
+    l1=strlen(s);
+    l2=strlen(t);
+    int i=0;
+    while(s[i]==t[i] && s[i]!='\0' && t[i]!='\0')
+    {
+        c++;
+        i++;
+    }
+    x=l1-c;
+    y=l2-c;
+    if(strcmp(s,t)==0 && k>=(l1+l2))
+        printf("Yes");
+    else if(strcmp(s,t)==0 && k<(l1+l2) && k%2==0)
+        printf("Yes");
+    else if(k>=(l1+l2) && l1==l2)
+        printf("Yes");
+    else if((x+y)<=k && (k-(x+y))%2==0)
+        printf("Yes");
+    else
+        printf("No");
+    return 0;
+}
