@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n,arr[30],points=100,i,k;
+    scanf("%d %d",&n,&k);
+    for(i=0;i<n;i++)
+        scanf("%d",&arr[i]);
+    for(i=0;;)
+    {
+        i=(i+k)%n;
+        points--;
+        if(i==0)
+            {
+                if(arr[i]==0)
+                    break;
+                else
+                    {
+                        points-=2;
+                        break;
+                    }
+            }
+        else
+        {
+            if(arr[i]==1)
+                points-=2;
+        }
+    }
+    printf("%d\n",points);
+    return 0;
+}
