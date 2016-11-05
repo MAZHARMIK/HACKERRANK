@@ -1,0 +1,19 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string S1;
+    string S2;
+    cin>>S1;
+    cin>>S2;
+    cout<<S1.length()<<" "<<S2.length()<<endl;
+    cout<<S1+S2<<endl;
+    char c;
+    c = S1[0];
+    S1[0]=S2[0];
+    S2[0]=c;
+    cout<<S1<<" "<<S2<<endl;
+    return 0;
+}
