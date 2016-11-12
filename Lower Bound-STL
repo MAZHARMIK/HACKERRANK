@@ -1,0 +1,29 @@
+#include<iostream>
+#include<vector>
+#include<bits/stdc++.h>
+#include<algorithm>
+using namespace std;
+int main()
+{
+    int N,val;
+    scanf("%d",&N);
+    vector<int> v;
+    int i;
+    for(i=0;i<N;i++)
+    {
+        cin>>val;
+        v.push_back(val);
+    }
+
+    int Q;
+    cin>>Q;
+    while(Q--)
+    {
+        cin>>val;
+        vector<int>:: iterator i = lower_bound(v.begin(),v.end(),val);
+        if(v[i-v.begin()]==val)
+            cout<<"Yes "<<i-v.begin() + 1<<endl;
+        else
+            cout<<"No "<<i-v.begin()+1<<endl;
+    }
+}
