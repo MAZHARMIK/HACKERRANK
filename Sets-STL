@@ -1,0 +1,32 @@
+#include <iostream>
+#include<vector>
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int Q,y,x;
+    set<int>s;
+    cin>>Q;
+    while(Q--)
+    {
+        cin>>y>>x;
+        set<int>::iterator itr=s.find(x);
+        if(y==1)
+            s.insert(x);
+        else if(y==2)
+        {
+            if(itr!=s.end())
+                s.erase(x);
+        }
+        else
+        {
+            if(itr==s.end())
+                cout<<"No"<<endl;
+            else
+                cout<<"Yes"<<endl;
+        }
+
+    }
+    return 0;
+}
