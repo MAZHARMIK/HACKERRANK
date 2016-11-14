@@ -1,0 +1,35 @@
+#include<iostream>
+#include<map>
+using namespace std;
+int main()
+{
+    map<string,int>m;
+    int Q,Y,T;
+    string X;
+    cin>>Q;
+    while(Q--)
+    {
+        cin>>T;
+        if(T==1)
+        {
+            cin>>X;
+            cin>>Y;
+            m[X] += Y;
+        }
+        else if(T==2)
+        {
+            cin>>X;
+            m.erase(X);
+        }
+        else
+        {
+            cin>>X;
+            map<string,int>::iterator itr = m.find(X);
+            if(itr==(m.end()))
+                cout<<0<<endl;
+            else
+                cout<<m[X]<<endl;
+        }
+    }
+    return 0;
+}
