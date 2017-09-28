@@ -1,0 +1,18 @@
+#include<stdio.h>
+
+int main()
+{
+    int N, i, sum = 0; //sum is initialized to 0 so that, when the first loop runs, we get sum = 0 + arr[0] and so on.
+    scanf("%d", &N);
+    
+    int array[N];
+    
+    for(i=0; i<N; i++)
+    {
+        scanf("%d", &array[i]); //this will scan the numbers of array
+        sum = sum + array[i];   //I am adding the numbers of the array and storing them in the variable sum
+    }
+    
+    printf("%d", sum);
+return 0;
+}
