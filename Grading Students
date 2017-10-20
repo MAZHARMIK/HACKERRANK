@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+int main()
+{
+    int T, grade, temp;
+    scanf("%d", &T);
+    while(T != 0)
+    {
+        scanf("%d", &grade);
+        if(grade<38)
+            printf("%d\n", grade);
+        else
+        {
+            temp = grade;
+            while( (grade%5) != 0)
+            {
+                grade++;
+            }
+            if(grade-temp < 3)
+                printf("%d\n", grade);
+            else
+                printf("%d\n", temp);
+        }
+        T--;
+    }
+return 0;
+}
