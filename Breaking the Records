@@ -1,0 +1,36 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    int arr[n], i, lowest, highest, lowest_count = 0, highest_count = 0;
+    
+    for(i=0; i<n; i++)
+    {
+        cin>> arr[i];
+    }
+    
+    lowest = highest = arr[0];
+    
+    for(i=1; i<n; i++)
+    {
+        if(arr[i] > highest)
+        {
+            highest_count++;
+            highest = arr[i];
+            continue;
+        }
+        if(arr[i] < lowest)
+        {
+            lowest_count++;
+            lowest = arr[i];
+            continue;
+        }
+    }
+    cout << highest_count << " " << lowest_count << endl;
+    
+return 0;
+}
