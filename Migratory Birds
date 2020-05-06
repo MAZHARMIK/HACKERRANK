@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    int n;
+    cin >> n;
+    int arr[n];
+    int birds[6] = {0};
+
+    for(int i = 0; i<n; i++){
+        cin >> arr[i];
+        birds[arr[i]]++;
+    }
+    
+    int common_bird_value = 0;
+    int common_bird;
+    for(int i = 5; i>0; i--){
+        if(birds[i] >= common_bird_value) {
+            common_bird_value = birds[i];
+            common_bird = i;
+        }
+    }
+    cout << common_bird;
+    
+return 0;    
+}
