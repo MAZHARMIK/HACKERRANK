@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int chocolate[n];
+    for(int i = 0; i<n; i++)
+        cin>>chocolate[i];
+    int sum_day;
+    cin >> sum_day;
+    int month_bar_size;
+    cin >> month_bar_size;
+    
+    int number_of_ways = 0, sum=0, j, i;
+    int counter_number_of_size;
+    for(int i = 0; i<=n-month_bar_size; i++) {
+        counter_number_of_size = month_bar_size;
+        j = i;
+        while(counter_number_of_size--) {
+            sum += chocolate[j];
+            j++;
+        }
+        if(sum == sum_day) number_of_ways++;
+        sum = 0;
+    }
+    cout << number_of_ways << endl;
+}
