@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int year;
+    cin >> year;
+    bool is_leap = false;
+
+    if(year<1918 && year%4 == 0) is_leap = true;
+    else if((year>1918) && ((year%400 == 0) || ((year%4==0) && (year%100!=0)))) is_leap = true;
+
+    if(year == 1918)
+        cout << "26.09.1918" << endl; //since 31st January = 14th Feb in 1918 and so, Feb has only 15 days
+    else if(is_leap == true)
+        cout << "12.09." << year << endl;
+    else
+        cout << "13.09." << year << endl;
+   
+    
+
+return 0; 
+}
