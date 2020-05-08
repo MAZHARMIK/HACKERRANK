@@ -1,0 +1,17 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+
+int main() {
+    int n, p;
+    cin >> n;
+    cin >> p;
+
+    int distance_from_front = p-1;
+    int distance_from_end   = n-p;
+    float divider = 2;
+    float num_pages_from_front = ceil((float)(distance_from_front)/divider);
+    float num_pages_from_end = (n%2==0)? (ceil((float)(distance_from_end)/divider)) : (floor((float)(distance_from_end)/divider));
+    
+    cout << (int)min(num_pages_from_front, num_pages_from_end);
+}
