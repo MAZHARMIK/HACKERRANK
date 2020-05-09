@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    char steps[n];
+    int level = 0;
+    int valley = 0;
+
+    for(int i=0; i<n; i++) {
+        cin >> steps[i];
+    }
+    //Valley count only increases when Gary goes D (down) just from sea level i.e (from 0 level)
+    for(char ch: steps) {
+        if(ch == 'U') {
+            level++;
+        } else {
+            if(level == 0) {
+                valley++;
+            }
+            level--;
+        }
+    }
+    cout << valley;
+
+return 0;
+}
