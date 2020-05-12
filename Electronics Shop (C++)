@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int money, keyboard, usb, i;
+    cin >> money;
+    cin >> keyboard;
+    cin >> usb;
+    int keyboard_price[keyboard];
+    int usb_price[usb];
+    for(i=0; i<keyboard; i++) {
+        cin >> keyboard_price[i];
+    }
+
+    for(i=0; i<usb; i++) {
+        cin >> usb_price[i];
+    }
+    int result = -1;
+    sort(keyboard_price, keyboard_price+keyboard);
+    sort(usb_price, usb_price+usb);
+    int nothing_to_buy = 1;
+    
+    if(keyboard >= usb) {
+        int j = keyboard-1;
+        for(i=usb-1; i>=0; i--) {
+            if(usb_price[i] + keyboard_price[j] <= money) {
+                result = max((usb_price[i] + keyboard_price[j]), result);
+                nothing_to_buy = 0;
+            }
+            if(i==0) {
+                i = usb-1;
+                j--;
+            }
+            if(j<0)
+                break;
+        }
+        if(nothing_to_buy)
+            cout << -1;
+        else
+            cout << result;
+    }else {
+        int j = usb-1;
+        for(i=keyboard-1; i>=0; i--) {
+            if(keyboard_price[i] + usb_price[j] <= money){
+                result = max((keyboard_price[i] + usb_price[j]), result);
+                nothing_to_buy = 0;
+            }
+            if(i==0) {
+                i = keyboard-1;
+                j--;
+            }
+            if(j<0)
+                break;
+        }
+        if(nothing_to_buy)
+            cout << -1;
+        else
+            cout << result;
+    }
+
+}
