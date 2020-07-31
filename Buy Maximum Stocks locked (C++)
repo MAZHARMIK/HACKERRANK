@@ -1,0 +1,43 @@
+/*
+  Company Tags     :  Goldman Sachs (In  Goldman Sachs CodeSprint)
+  Link to question : https://www.hackerrank.com/contests/gs-codesprint/challenges/buy-maximum-stocks/problem
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef unsigned long long ll;
+    
+ll solve(vector<pair<int, int>>& costDay, int n, ll Sum) {
+    ll count = 0;
+    for(int i = 0; i<n; i++) {
+        ll price = costDay[i].first;
+        ll day   = costDay[i].second;
+        
+        ll no    = min(day, Sum/price);
+        count    += no;
+        Sum      -= no*price;
+        if(Sum <= 0)
+            break;
+    }
+    return count;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> cost(n);
+    for(int i = 0; i<n; i++)
+        cin >> cost[i];
+    ll Sum;
+    cin >> Sum;
+    
+    
+    vector<pair<int, int>> costDay(n);
+    for(int i = 0; i<n; i++)
+        costDay[i] = {cost[i], i+1};
+
+    sort(costDay.begin(), costDay.end());
+    
+    cout << solve(costDay, n, Sum);
+    return 0;
+}
