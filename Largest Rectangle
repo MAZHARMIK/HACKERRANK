@@ -1,96 +1,58 @@
-#include<stdio.h>
-#include<limits.h>
-#include<stdlib.h>
-
-int Arr[100005];
-int maxArea=INT_MIN;
-struct Stack
-{
-    int top;
-    int capacity;
-    int *array;
-};
-struct Stack* createStack(int capacity)
-{
-    struct Stack *stack =(struct Stack*)malloc(sizeof(struct Stack));
-    stack->top=-1;
-    stack->capacity=capacity;
-    stack->array=(int *)malloc(sizeof(int)*(capacity));
-    return stack;
-};
-struct Stack* isFull(struct Stack* stack)
-{
-    return stack->top==stack->capacity-1;
-};
-
-void push(struct Stack* stack,int item)
-{
-    stack->array[++stack->top]=item;
-}
-
-
-int isEmpty(struct Stack *stack)
-{
-    return stack->top==-1;
-}
-
-void pop(struct Stack* stack)
-{
-    if(isEmpty(stack))
-        return INT_MIN;
-    else
-        stack->top--;
-}
-
-int peek(struct Stack* stack)
-{
-    return stack->array[stack->top];
-}
-
-int main()
-{
-    struct Stack *StackHeight=createStack(100005);
-    struct Stack *StackPosition=createStack(100005);
-    int n,i,h,pos,tempPos,temph,tempArea;
-    scanf("%d",&n);
-    for(i=0;i<n;i++)
-    {
-        scanf("%d",&Arr[i]);
-    }
-    for(pos=0;pos<n;pos++)
-    {
-        h=Arr[pos];
-        if(h>peek(StackHeight) || isEmpty(StackHeight))
-        {
-            push(StackHeight,h);
-            push(StackPosition,pos);
+vector<int> NSR(vector<int>& h, int n) {
+    stack<int> st;
+    vector<int> right(n);
+    int pseudo_index = n;
+    for(int i = n-1; i>=0; i--) {
+        if(st.empty())
+            right[i] = pseudo_index;
+        else {
+            while(!st.empty() && h[st.top()] >= h[i])
+                st.pop();
+            if(st.empty())
+                right[i] = pseudo_index;
+            else
+                right[i] = st.top();
         }
-        else if(h<peek(StackHeight))
-        {
-            while(h<peek(StackHeight))
-            {
-                temph=peek(StackHeight);
-                pop(StackHeight);
-                tempPos=peek(StackPosition);
-                pop(StackPosition);
-                tempArea=temph*(pos-tempPos);
-                if(tempArea>maxArea)
-                    maxArea=tempArea;
-            }
-            push(StackHeight,h);
-            push(StackPosition,tempPos);
+        st.push(i);
+    }
+    return right;
+}
+
+vector<int> NSL(vector<int>& h, int n) {
+    stack<int> st;
+    vector<int> left(n);
+    int pseudo_index = -1;
+    for(int i = 0; i<n; i++) {
+        if(st.empty())
+            left[i] = pseudo_index;
+        else {
+            while(!st.empty() && h[st.top()] >= h[i])
+                st.pop();
+            if(st.empty())
+                left[i] = pseudo_index;
+            else
+                left[i] = st.top();
         }
+        st.push(i);
     }
-    while(!isEmpty(StackHeight))
-    {
-         temph=peek(StackHeight);
-         pop(StackHeight);
-         tempPos=peek(StackPosition);
-         pop(StackPosition);
-         tempArea=temph*(pos-tempPos);
-        if(tempArea>maxArea)
-            maxArea=tempArea;
+    return left;
+}
+
+//This is the driver function
+long largestRectangle(vector<int> h) {
+    int n = h.size();
+    vector<int> right = NSR(h, n);
+    vector<int> left  = NSL(h, n);
+    vector<int> width(n);
+    for(int i = 0; i<n; i++) {
+        width[i] = right[i]-left[i]-1;
     }
-    printf("%d\n",maxArea);
-    return 0;
+    long max_area = 0;
+    for(int i = 0; i<n; i++) {
+        long a = h[i]*width[i];
+        if(max_area < a)
+            max_area = a;
+    }
+
+    return max_area;
 }
