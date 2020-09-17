@@ -1,0 +1,62 @@
+vector<string> split_string(string);
+struct trieNode {
+    trieNode* left;
+    trieNode* right;
+};
+void insert(trieNode* head, int num) {
+    trieNode* pCrawl = head;
+    for(int i = 31; i>=0; i--) {
+        int ith_bit = (num>>i)&1;
+        if(ith_bit == 0) {
+            if(!pCrawl->left) {
+                pCrawl->left = new trieNode();
+            }
+            pCrawl = pCrawl->left;
+        } else {
+            if(!pCrawl->right) {
+                pCrawl->right = new trieNode();
+            }
+            pCrawl = pCrawl->right;
+        }
+    }
+}
+
+int findMaxZor(trieNode* head, int num) {
+
+    int maxSum = 0;
+    trieNode* pCrawl = head;
+    for(int i = 31; i>=0; i--) {
+        int ith_bit = (num>>i)&1;
+        
+        if(ith_bit == 1) {
+            if(pCrawl->left) {
+                maxSum += pow(2, i);
+                pCrawl=  pCrawl->left;
+            } else {
+                pCrawl =  pCrawl->right;
+            }
+        } else {
+            if(pCrawl->right) {
+                maxSum += pow(2, i);
+                pCrawl=  pCrawl->right;
+            } else {
+                pCrawl=  pCrawl->left;
+            }
+        }
+    }
+    return maxSum;
+}
+
+// Complete the maxXor function below.
+vector<int> maxXor(vector<int> arr, vector<int> queries) {
+    vector<int> result;
+    trieNode* head = new trieNode();
+    for(int i : arr) {
+        insert(head, i);
+    }
+
+    for(int i : queries) {
+        result.push_back(findMaxZor(head, i));
+    }
+    return result;
+}
