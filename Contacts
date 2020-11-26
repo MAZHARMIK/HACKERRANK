@@ -1,0 +1,59 @@
+/*
+    Link to Question : https://www.hackerrank.com/challenges/contacts/problem
+    This solution is in C++
+*/
+
+struct trieNode{
+    int  wordsCount;
+    trieNode* children[26];
+};
+
+trieNode* createNewNode() {
+    trieNode* newNode = new trieNode();
+    newNode->wordsCount = 1;
+    for(int i = 0; i<26; i++)
+        newNode->children[i] = NULL;
+
+    return newNode;
+}
+
+void insertNode(string key, trieNode* root) {
+    trieNode* pCrawl = root;
+    for(char ch:key) {
+        int idx = ch-'a';
+        if(pCrawl->children[idx] == NULL) {
+            pCrawl->children[idx] = createNewNode();
+        } else {
+            pCrawl->children[idx]->wordsCount++;
+        }
+        pCrawl = pCrawl->children[idx];
+    }
+}
+
+int searchTrie(string key, trieNode* root) {
+    trieNode* pCrawl = root;
+    int n = key.length();
+    int i = 0;
+    for(char ch:key) {
+        int idx = ch-'a';
+        if(pCrawl->children[idx] == NULL) {
+            return 0;
+        }
+        pCrawl = pCrawl->children[idx];
+    }
+
+    return pCrawl->wordsCount;
+}
+
+vector<int> contacts(vector<vector<string>> queries) {
+    struct trieNode* root = createNewNode();
+    vector<int> result;
+    for(vector<string> vec:queries) {
+        if(vec[0] == "add") {
+            insertNode(vec[1], root);
+        } else {
+            result.push_back(searchTrie(vec[1], root));
+        }
+    }
+    return result;
+}
