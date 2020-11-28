@@ -1,0 +1,72 @@
+/*
+    C++ simple solution
+    Hackerrank Link : https://www.hackerrank.com/challenges/no-prefix-set/problem
+*/
+
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct trieNode {
+    bool end;
+    char ch;
+    trieNode* children[26];
+};
+
+trieNode* getNode() {
+    trieNode* newNode = new trieNode();
+    newNode->end = false;
+    newNode->ch = ch;
+    for(int i = 0; i<26; i++)
+        newNode->children[i] = NULL;
+
+    return newNode;
+}
+
+bool insertNode(string key, trieNode* root) {
+    trieNode* pCrawl = root;
+    for(int i = 0; i<key.length(); i++) {
+        int idx = key[i]-'a';
+        if(pCrawl->children[idx] == NULL) {
+            pCrawl->children[idx] = getNode();
+        } else if(pCrawl->children[idx]->end == true) {
+            return false;
+        }
+        pCrawl = pCrawl->children[idx];
+    }
+
+    for(int i = 0; i<26; i++) {
+        if(pCrawl->children[i] != NULL) {
+            return false;
+        }
+    }
+    pCrawl->end = true;
+    return true;
+}
+
+
+int main() {
+    int n;
+    cin >> n;
+    bool good = true;
+    string victim = "";
+    string str;
+    trieNode* root = getNode();
+    while(n--) {
+        cin >> str;
+        good = insertNode(str, root);
+        if(!good) {
+            victim = str;
+            break;
+        }
+    }
+    if(!good) {
+        cout << "BAD SET\n" << victim << endl;
+    } else {
+        cout << "GOOD SET\n";
+    }
+    return 0;
+}
