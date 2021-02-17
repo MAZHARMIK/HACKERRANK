@@ -1,0 +1,11 @@
+// Complete the nimGame function below.
+string nimGame(vector<int> pile) {
+    int result = 0;
+    for(int x:pile) {
+        result^=x;
+    }
+    
+    if(result == 0)
+        return "Second";
+    return "First";
+}
