@@ -9,16 +9,9 @@ using namespace std;
 void printKMax(int arr[], int n, int k){
     deque<int> deq;
     
-    for(int i = 0; i<k; i++) {
-        while(!deq.empty() && arr[deq.back()] <= arr[i])
-            deq.pop_back();
-        
-        deq.push_back(i);
-    }
     vector<int> result;
     
-    for(int i = k; i<n; i++) {
-        result.push_back(arr[deq.front()]);
+    for(int i = 0; i<n; i++) {
         //frist remove out of window elements which are max
         while(!deq.empty() && deq.front() <= i-k)
             deq.pop_front();
@@ -28,8 +21,10 @@ void printKMax(int arr[], int n, int k){
             deq.pop_back();
         
         deq.push_back(i);
+        
+        if(i >= k-1) //only when we get a window of size k
+            result.push_back(arr[deq.front()]);
     }
-    result.push_back(arr[deq.front()]);
     
     for(int x:result)
         cout << x << " ";
